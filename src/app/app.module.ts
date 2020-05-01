@@ -15,7 +15,9 @@ import { PagesModule } from './pages/pages.module';
 // import { Incre}mentadorComponent } from './components/incrementador/incrementador.component';
 
 // Temporal
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginGuardGuard } from './services/guards/login-guard.guard';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,13 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LoginGuardGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
