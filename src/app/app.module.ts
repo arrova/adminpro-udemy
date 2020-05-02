@@ -23,7 +23,7 @@ import { LoginGuardGuard } from './services/guards/login-guard.guard';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     // IncrementadorComponent
   ],
   imports: [
