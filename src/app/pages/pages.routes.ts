@@ -1,10 +1,10 @@
 // Guards
-import { LoginGuardGuard } from '../services/service.index';
+// import { LoginGuardGuard } from '../services/service.index';
 import { AdminGuard } from '../services/service.index';
 
 // Components
 import { RouterModule, Routes } from '@angular/router';
-import { PagesComponent } from './pages.component';
+// import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
@@ -17,16 +17,22 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 
 const pagesRoutes: Routes = [
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [ LoginGuardGuard ],
-        children: [
+    // {
+    //     path: '',
+    //     component: PagesComponent,
+    //     canActivate: [ LoginGuardGuard ],
+    //     children: [
             // El data es para poder comunicarnos con otros componentes como en este caso los breadcrumbs
-            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+                data: { titulo: 'Dashboard' },
+                canActivate: [VerificaTokenGuard]
+            },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
             { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas' } },
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
@@ -45,7 +51,7 @@ const pagesRoutes: Routes = [
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de Medicos' } },
             { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Actualizar Medico' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-        ]
-    },
+    //     ]
+    // },
 ];
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes );
